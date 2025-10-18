@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="DermAI - Ứng dụng AI hỗ trợ chẩn đoán bệnh da liễu">
+    <meta property="og:description" content="Ứng dụng AI hỗ trợ chẩn đoán các bệnh về da liễu nhanh chóng và chính xác. Sử dụng trí tuệ nhân tạo và thị giác máy tính để phân tích hình ảnh da và cung cấp các chẩn đoán kịp thời.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://litclub.pythonanywhere.com/">
+    <meta property="og:image" content="https://scontent.fhan15-2.fna.fbcdn.net/v/t39.30808-6/517737809_122100053498943826_3327007350081078447_n.png?_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=edONUK9z7kkQ7kNvwGrcQv7&_nc_oc=AdkRdS-VL0_JPfxBJv-XMhR_XPRw6BcxfGIvM441XgvNj4YQEuV7E0WNzscIUV9WT8I&_nc_zt=23&_nc_ht=scontent.fhan15-2.fna&_nc_gid=oQXmcf39N5CEF7QDQIN0hw&oh=00_AfTGO5IfzsEbxFCqddWx-S-7SJlJnywSnTXyjgdq0DteCQ&oe=68801A5D">
+    <meta property="og:site_name" content="DermAI - Ứng dụng AI hỗ trợ chẩn đoán bệnh da liễu">
+
+    <link rel="shortcut icon" href="https://github.com/Codedr-edu/DermAI/blob/main/media/Thi%E1%BA%BFt%20k%E1%BA%BF%20ch%C6%B0a%20c%C3%B3%20t%C3%AAn.png?raw=true" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DermAI - Ứng dụng AI hỗ trợ chẩn đoán bệnh da liễu</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+      .feature-card {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #007bff, #28a745) border-box;
+      }
+      .feature-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+      }
+      .feature-icon {
+        font-size: 1.5rem;
+      }
+      .feature-image-container {
+        position: relative;
+        display: inline-block;
+        transition: transform 0.3s ease;
+      }
+      .feature-image-container:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+      }
+      .feature-image {
+        transition: transform 0.3s ease;
+      }
+      .testing-card {
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        background: linear-gradient(white, white) padding-box, linear-gradient(45deg, #007bff, #28a745) border-box;
+        border-radius: 10px;
+      }
+      .testing-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+      }
+      .nav-link {
+        font-weight: 500;
+        font-size: 1.1rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32" aria-hidden="true">
+              <use xlink:href="#bootstrap"></use>
+            </svg>
+            <span class="fs-4">DermAI</span>
+          </a>
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#home" class="nav-link">Trang chủ</a></li>
+            <!--<li class="nav-item"><a href="#about_us" class="nav-link">Về chúng tôi</a></li>-->
+            <li class="nav-item"><a href="#product" class="nav-link">Về DermAI</a></li>
+            <li class="nav-item"><a href="#features" class="nav-link">Tính năng</a></li>
+            <li class="nav-item"><a href="#thanh-tuu" class="nav-link">Thành tựu</a></li>
+            <li class="nav-item"><a href="#trai-nghiem" class="nav-link">Trải nghiệm</a></li>
+          </ul>
+        </header>
+    </div>
+    <div class="mb-5 text-center w-100" id="home" style="background-image: url('https://plus.unsplash.com/premium_photo-1661779386497-1f7b9ec4d8f3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+        <div style="position: relative; z-index: 2;">
+          <img
+            class="d-block mx-auto mb-4 rounded"
+            src="https://github.com/Codedr-edu/DermAI/blob/main/media/Thi%E1%BA%BFt%20k%E1%BA%BF%20ch%C6%B0a%20c%C3%B3%20t%C3%AAn.png?raw=true"
+            alt=""
+            width="150"
+            height="150"
+          />
+          <h1 class="display-5 fw-bold text-white">DermAI</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4 text-white">
+              Ứng dụng AI hỗ trợ chẩn đoán các bệnh về da liễu nhanh chóng và chính xác. Sử dụng trí tuệ nhân tạo và thị giác máy tính để phân tích hình ảnh da và cung cấp các chẩn đoán kịp thời.
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <a href="#trai-nghiem" type="button" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+                Trải nghiệm ngay
+              </a>
+              <a href="#product" type="button" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+                Tìm hiểu thêm
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+<!--<section id="about_us" class="py-4">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-4 text-center">
+        <div style="background: linear-gradient(45deg, #007bff, #28a745); border-radius: 50%; padding: 5px; display: inline-block;">
+          <img src="https://via.placeholder.com/300" class="img-fluid rounded-circle" style="height:300px;width: 300px; background: white;" alt="Your Photo">
+        </div>
+      </div>
+      <div class="col-md-8">
+        <h2 class="mb-4">Về Tôi</h2>
+        <p><strong>Tên:</strong> Tên Dummy</p>
+        <p><strong>Trường lớp:</strong> Trường Dummy</p>
+        <p><strong>Tech-Stack:</strong> Tech-Stack Dummy</p>
+        <p><strong>Giới thiệu:</strong> Đây là văn bản giới thiệu dummy. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p><strong>Lý do tạo dự án:</strong> Đây là lý do dummy để tạo dự án. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+  </div>
+</section>-->
+
+<section id="product" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Giới thiệu sản phẩm</h2>
+    <p class="text-center lead mb-4">DermAI là ứng dụng AI tiên tiến hỗ trợ chẩn đoán các bệnh về da liễu một cách nhanh chóng và chính xác. Sử dụng công nghệ trí tuệ nhân tạo và thị giác máy tính, DermAI phân tích hình ảnh da để cung cấp các chẩn đoán kịp thời và đáng tin cậy.</p>
+    <div class="row text-center">
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 feature-card p-5">
+          <i class="bi bi-robot feature-icon text-primary mb-3"></i>
+          <h5 class="card-title">AI Thông Minh</h5>
+          <p class="card-text">Sử dụng thuật toán AI tiên tiến để phân tích hình ảnh da.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 feature-card p-5">
+          <i class="bi bi-speedometer2 feature-icon text-primary mb-3"></i>
+          <h5 class="card-title">Nhanh Chóng</h5>
+          <p class="card-text">Cung cấp kết quả chẩn đoán trong thời gian ngắn.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 feature-card p-5">
+          <i class="bi bi-shield-check feature-icon text-primary mb-3"></i>
+          <h5 class="card-title">Đáng Tin Cậy</h5>
+          <p class="card-text">Độ chính xác cao với dữ liệu được đào tạo chuyên nghiệp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+<div class="rounded" style="background: linear-gradient(45deg, #007bff, #28a745);width: 100%;height:5px;"></div>
+</div>
+
+<section id="features" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Tính năng</h2>
+    
+    <!-- Horizontal Feature 1: Hỗ trợ chẩn đoán bằng hình ảnh -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <h4>Hỗ trợ chẩn đoán bằng hình ảnh</h4>
+        <p>Sử dụng công nghệ AI tiên tiến để phân tích hình ảnh da liễu, giúp phát hiện sớm các vấn đề về da với độ chính xác cao. Người dùng chỉ cần tải ảnh lên để nhận kết quả nhanh chóng.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="feature-image-container">
+          <div style="background: linear-gradient(45deg, #007bff, #28a745); border-radius: 10px; padding: 5px; display: inline-block;">
+            <img src="https://github.com/Codedr-edu/DermAI/blob/main/media/Gemini_Generated_Image_htlybthtlybthtly.png?raw=true" class="img-fluid feature-image rounded" alt="Chẩn đoán bằng hình ảnh" style="background: white;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Horizontal Feature 2: Chẩn đoán nâng cao với thông tin chi tiết -->
+    <div class="row align-items-center mb-5 flex-row-reverse">
+      <div class="col-md-6">
+        <h4>Chẩn đoán nâng cao với thông tin chi tiết</h4>
+        <p>Cung cấp báo cáo chi tiết về tình trạng da, bao gồm nguyên nhân, mức độ nghiêm trọng và các khuyến nghị điều trị dựa trên dữ liệu y khoa đáng tin cậy.</p>
+      </div>
+      <div class="col-md-6 text-center">
+        <div class="feature-image-container">
+          <div style="background: linear-gradient(45deg, #007bff, #28a745); border-radius: 10px; padding: 5px; display: inline-block;">
+            <img src="https://github.com/Codedr-edu/DermAI/blob/main/media/Gemini_Generated_Image_xgjw9rxgjw9rxgjw.png?raw=true" class="img-fluid feature-image rounded" alt="Chẩn đoán nâng cao" style="background: white;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="justify-content-center align-items-center d-flex mx-auto">
+      <div class="rounded mb-5" style="background: linear-gradient(45deg, #007bff, #28a745);width: 75%;height:5px;"></div>
+    </div>
+
+    <!-- Vertical Feature 3: Chatbot -->
+    <div class="row mb-5">
+      <div class="col-md-12 text-center mb-3">
+        <div class="feature-image-container mx-auto" style="max-width: 400px;">
+          <div style="background: linear-gradient(45deg, #007bff, #28a745); border-radius: 10px; padding: 5px; display: inline-block;">
+            <img src="https://github.com/Codedr-edu/DermAI/blob/main/media/chatbot.png?raw=true" class="img-fluid feature-image rounded" alt="Chatbot" style="background: white;">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h4 class="text-center">Chatbot</h4>
+        <p class="text-center">Trợ lý ảo thông minh hỗ trợ tư vấn 24/7 về các vấn đề da liễu, trả lời câu hỏi và hướng dẫn sử dụng ứng dụng một cách dễ dàng.</p>
+      </div>
+    </div>
+
+    <p class="text-danger text-center">*Kết quả của các tính năng vẫn cần có sự tham khảo ý kiến người có chuyên môn y khoa</p>
+    <br>
+    <!-- Vertical Feature 4: Bản đồ bệnh viện nhà thuốc và phòng khám -->
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <h4 class="text-center">Bản đồ bệnh viện, nhà thuốc và phòng khám</h4>
+        <p class="text-center">Tích hợp bản đồ tương tác để tìm kiếm và định vị các cơ sở y tế gần nhất, giúp người dùng dễ dàng tiếp cận dịch vụ chăm sóc da.</p>
+      </div>
+      <div class="col-md-12 text-center mb-4">
+        <div class="feature-image-container mx-auto" style="max-width: 400px;">
+          <div style="background: linear-gradient(45deg, #007bff, #28a745); border-radius: 10px; padding: 5px; display: inline-block;">
+            <img src="https://github.com/Codedr-edu/DermAI/blob/main/media/Located.png?raw=true" class="img-fluid feature-image rounded" alt="Bản đồ" style="background: white;">
+          </div>
+        </div>
+      </div>
+    </div> 
+    <p class="text-muted text-center">*Các hình ảnh trên được tạo bằng AI và chỉ mang tính chất minh họa.</p>
+    <br> 
+  </div>
+</section>
+
+<div class="container">
+  <div class="rounded" style="background: linear-gradient(45deg, #007bff, #28a745);width: 100%;height:5px;"></div>
+</div>
+
+<section id="thanh-tuu" class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Thành tựu</h2>
+    
+    <div class="row align-items-start mb-5">
+      <div class="col-md-6">
+        <div style="position: relative; height: 300px;">
+          <canvas id="achievementsChart"></canvas>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-center mb-4">Thống kê nổi bật</h4>
+        <div class="text-center mb-4">
+          <div class="row">
+            <div class="col">
+              <div class="text-center">
+                <h3>~89%</h3>
+                <p>Độ chính xác chẩn đoán<br> (với điều kiện hoàn hảo)</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-center">
+                <h3>~75%</h3>
+                <p>Độ chính xác chẩn đoán<br> (với điều kiện bình thường)</p>
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-center">
+                <h3>~93</h3>
+                <p>Trường hợp ĐTNT tại <br> bệnh viện da liễu tỉnh</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testing-card p-3 mt-4 text-center">
+          <h3>Bệnh viện da liễu tỉnh Bắc Ninh</h3>
+          <h6>và ~10 cá nhân, tổ chức, cơ sở y tế uy tín khác</h6>
+          <p>Đều có những đánh giá tích cực cho DermAI sau khi sử dụng thử nghiệm</p>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      const ctx = document.getElementById('achievementsChart').getContext('2d');
+      const achievementsChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Kết quả chính xác hoàn toàn', 'Kết quả chính xác một phần', 'Kết quả cần thêm dữ liệu'],
+          datasets: [{
+            data: [43, 30, 27],
+            backgroundColor: [
+              '#007bff',  // Blue
+              '#ff9f40',  // Orange
+              '#6c757d',  // Gray 
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+            },
+            title: {
+              display: true,
+              text: 'Thống kê sơ bộ các trường hợp thử nghiệm DermAI'
+            }
+          }
+        }
+      });
+    </script>
+  </div>
+</section>
+
+<section id="trai-nghiem" class="py-5" style="background-image: url('https://plus.unsplash.com/premium_photo-1661779386497-1f7b9ec4d8f3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170'); background-size: cover; background-position: center; background-repeat: no-repeat; position: relative; display: flex; align-items: center; justify-content: center;">
+  <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <h1 class="text-center text-white">Trải nghiệm</h1>
+    <p class="text-center lead mb-4 text-white">Hãy trải nghiệm DermAI ngay hôm nay để nhận chẩn đoán da liễu nhanh chóng và chính xác.</p>
+    <div class="d-grid gap-2 mb-4 d-sm-flex justify-content-sm-center">
+      <a href="https://dermai-7xjv.onrender.com" type="button" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+        <i class="bi bi-globe me-2"></i>Trải nghiệm trên Web
+      </a>
+    </div>
+    <div class="justify-content-center align-items-center d-flex mx-auto">
+      <div class="rounded mb-4" style="background: linear-gradient(45deg, #007bff, #28a745);width: 75%;height:5px;"></div>
+    </div>
+    <h1 class="text-center text-white mb-4">Hoặc tải ứng dụng di động</h1>
+    <p class="text-center lead mb-4 text-white">Tải ứng dụng DermAI trên thiết bị di động của bạn để có trải nghiệm tối ưu và tiện lợi hơn.</p>
+    <div class="d-grid gap-2 mb-4 d-sm-flex justify-content-sm-center">
+      <a href="" type="button" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+        <i class="bi bi-android2 me-2"></i>Tải ứng dụng Android
+      </a>
+      <a href=#" type="button" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+        <i class="bi bi-apple me-2"></i>Tải ứng dụng iOS
+      </a>
+    </div>
+    <!--<div class="text-center">
+      <a href="#" class="btn btn-primary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #007bff, #28a745); border: none;">
+        <i class="bi bi-globe me-2"></i>Trải nghiệm trên Web
+      </a>
+    </div>
+    <br>
+    <div class="rounded" style="background: linear-gradient(45deg, #007bff, #28a745);width: 100%;height:5px;"></div>
+    <br>
+    <h4 class="text-center text-light mb-4">Nếu bạn sử dụng thiết bị di động</h4>
+    <div class="row">
+      <div class="col-md">
+        <div class="text-center">
+          <a href="#" class="btn btn-success btn-lg px-4 py-3" style="background: linear-gradient(45deg, #28a745, #007bff); border: none;">
+            <i class="bi bi-android2 me-2"></i>Tải ứng dụng Android
+          </a>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="text-center">
+          <a href="#" class="btn btn-secondary btn-lg px-4 py-3" style="background: linear-gradient(45deg, #6c757d, #17a2b8); border: none;">
+            <i class="bi bi-apple me-2"></i>Tải ứng dụng iOS
+          </a>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</section>
+
+<footer class="py-5" style="background: linear-gradient(45deg, #007bff, #28a745); color: white;">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h5>DermAI</h5>
+        <p>Ứng dụng AI tiên tiến hỗ trợ chẩn đoán các bệnh về da liễu nhanh chóng và chính xác.</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Liên hệ</h5>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-envelope me-2"></i>Email: codedr123456789@gmail.com</li>
+          <li><i class="bi bi-phone me-2"></i>Điện thoại: +84 838 6330 588</li>
+          <li><i class="bi bi-geo-alt me-2"></i>Địa chỉ: Bắc Ninh, Việt Nam</li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Theo dõi chúng tôi</h5>
+        <div>
+          <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+          <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+          <a href="#" class="text-white"><i class="bi bi-linkedin fs-4"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr style="border-color: rgba(255,255,255,0.3);">
+    <div class="text-center">
+      <p>&copy; 2025 DermAI. Tất cả quyền được bảo lưu.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>   
+</body>
+</html>
